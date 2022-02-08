@@ -443,27 +443,55 @@ id) /*: string*/
 
 },{}],"30Yv7":[function(require,module,exports) {
 var _cssJs = require('./css.js');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _cssJsDefault = _parcelHelpers.interopDefault(_cssJs);
 let n = 1;
-demo1.innerText = _cssJs.string.substr(0, n + '/n');
-demo2.innerHTML = _cssJs.string.substr(0, n);
-let id = setInterval(() => {
+demo1.innerText = _cssJsDefault.default.substr(0, n);
+demo2.innerHTML = _cssJsDefault.default.substr(0, n);
+let time = 100;
+const run = () => {
   n += 1;
-  if (n > _cssJs.string.length) {
+  if (n > _cssJsDefault.default.length) {
     window.clearInterval(id);
     return;
   }
-  console.log(n + ':' + _cssJs.string.substr(0, n));
-  demo1.innerText = _cssJs.string.substr(0, n);
-  demo2.innerHTML = _cssJs.string.substr(0, n);
+  console.log(n + ':' + _cssJsDefault.default.substr(0, n));
+  demo1.innerText = _cssJsDefault.default.substr(0, n);
+  demo2.innerHTML = _cssJsDefault.default.substr(0, n);
   demo1.scrollTop = demo1.scrollHeight;
-}, 100);
+};
+const play = () => {
+  return setInterval(run, time);
+};
+const pause = () => {
+  window.clearInterval(id);
+};
+let id = play();
+btnPause.onclick = () => {
+  pause();
+};
+btnPlay.onclick = () => {
+  id = play();
+};
+btnSlow.onclick = () => {
+  pause();
+  time = 300;
+  id = play();
+};
+btnNormal.onclick = () => {
+  pause();
+  time = 100;
+  id = play();
+};
+btnFast.onclick = () => {
+  pause();
+  time = 0;
+  id = play();
+};
 
-},{"./css.js":"60uKb"}],"60uKb":[function(require,module,exports) {
+},{"./css.js":"60uKb","@parcel/transformer-js/lib/esmodule-helpers.js":"7tSgz"}],"60uKb":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "string", function () {
-  return string;
-});
 const string = `
 
 .mouse-head{
@@ -745,6 +773,7 @@ const string = `
 }
 
 `;
+exports.default = string;
 
 },{"@parcel/transformer-js/lib/esmodule-helpers.js":"7tSgz"}],"7tSgz":[function(require,module,exports) {
 "use strict";

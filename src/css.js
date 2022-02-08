@@ -1,4 +1,4 @@
-export const string =`
+const string =`
 
 .mouse-head{
   position: absolute;
@@ -279,3 +279,5 @@ export const string =`
 }
 
 `
+
+export default string

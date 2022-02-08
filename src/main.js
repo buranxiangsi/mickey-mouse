@@ -1,22 +1,58 @@
-import {string} from './css.js'
-
-
+import string from './css.js'
 
 let n = 1
-demo1.innerText=string.substr(0, n+'/n')
-demo2.innerHTML=string.substr(0,n) 
+demo1.innerText = string.substr(0, n)
+demo2.innerHTML = string.substr(0, n)
 
-let id =setInterval(() => {
-  n+=1
-  if(n>string.length){
+let time = 100
+
+
+const run = () => {
+    n += 1
+    if (n > string.length) {
+        window.clearInterval(id)
+        return
+    }
+
+
+    console.log(n + ':' + string.substr(0, n))
+    demo1.innerText = string.substr(0, n)
+    demo2.innerHTML = string.substr(0, n)
+    demo1.scrollTop = demo1.scrollHeight
+}
+
+const play = () => {
+    return setInterval(run, time)
+}
+
+const pause = () => {
     window.clearInterval(id)
-    return
-  }
+}
 
-  console.log(n + ':' + string.substr(0, n))
-  demo1.innerText=string.substr(0, n)
-  demo2.innerHTML=string.substr(0,n) 
-  demo1.scrollTop = demo1.scrollHeight//滚动条总是在最新的一行
-}, 100);
+let id = play()
+
+btnPause.onclick = () => {
+    pause()
+}
+
+btnPlay.onclick = () => {
+    id = play()
+}
+
+btnSlow.onclick = () => {
+    pause()
+    time = 300
+    id = play()
+}
+btnNormal.onclick = () => {
+    pause()
+    time = 100
+    id = play()
+}
+btnFast.onclick = () => {
+    pause()
+    time = 0
+    id = play()
+}
 
 
