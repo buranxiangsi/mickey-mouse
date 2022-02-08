@@ -442,7 +442,29 @@ id) /*: string*/
 }
 
 },{}],"30Yv7":[function(require,module,exports) {
-const string =`
+var _cssJs = require('./css.js');
+let n = 1;
+demo1.innerText = _cssJs.string.substr(0, n + '/n');
+demo2.innerHTML = _cssJs.string.substr(0, n);
+let id = setInterval(() => {
+  n += 1;
+  if (n > _cssJs.string.length) {
+    window.clearInterval(id);
+    return;
+  }
+  console.log(n + ':' + _cssJs.string.substr(0, n));
+  demo1.innerText = _cssJs.string.substr(0, n);
+  demo2.innerHTML = _cssJs.string.substr(0, n);
+  demo1.scrollTop = demo1.scrollHeight;
+}, 100);
+
+},{"./css.js":"60uKb"}],"60uKb":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "string", function () {
+  return string;
+});
+const string = `
 
 .mouse-head{
   position: absolute;
@@ -722,27 +744,50 @@ const string =`
   z-index: 5;
 }
 
-`
+`;
 
-let n = 1
-demo1.innerText=string.substr(0, n+'/n')
-demo2.innerHTML=string.substr(0,n) 
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"7tSgz"}],"7tSgz":[function(require,module,exports) {
+"use strict";
 
-let id =setInterval(() => {
-  n+=1
-  if(n>string.length){
-    window.clearInterval(id)
-    return
-  }
+exports.interopDefault = function (a) {
+  return a && a.__esModule ? a : {
+    default: a
+  };
+};
 
-  console.log(n + ':' + string.substr(0, n))
-  demo1.innerText=string.substr(0, n)
-  demo2.innerHTML=string.substr(0,n) 
-  demo2.scrollTop = demo2.scrollHeight//滚动条总是在最新的一行
-}, 1);
+exports.defineInteropFlag = function (a) {
+  Object.defineProperty(a, '__esModule', {
+    value: true
+  });
+};
+
+exports.exportAll = function (source, dest) {
+  Object.keys(source).forEach(function (key) {
+    if (key === 'default' || key === '__esModule') {
+      return;
+    } // Skip duplicate re-exports when they have the same value.
 
 
+    if (key in dest && dest[key] === source[key]) {
+      return;
+    }
 
+    Object.defineProperty(dest, key, {
+      enumerable: true,
+      get: function () {
+        return source[key];
+      }
+    });
+  });
+  return dest;
+};
+
+exports.export = function (dest, destName, get) {
+  Object.defineProperty(dest, destName, {
+    enumerable: true,
+    get: get
+  });
+};
 },{}]},["1Ypau","30Yv7"], "30Yv7", "parcelRequire427e")
 
 //# sourceMappingURL=index.bd78eeec.js.map
